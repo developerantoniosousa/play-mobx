@@ -16,26 +16,23 @@ ContadorState.decrement = function () {
   this.count++;
 };
 
-@observer
-class Contador extends React.Component {
-  increment = () => {
-    this.props.ContadorState.increment();
+const Contador = observer(({ ContadorState }) => {
+  const increment = () => {
+    ContadorState.increment();
   };
 
-  decrement = () => {
-    this.props.ContadorState.decrement();
+  const decrement = () => {
+    ContadorState.decrement();
   };
 
-  render() {
-    return (
-      <>
-        <Text>{this.props.ContadorState.count}</Text>
-        <Button title="-" onPress={() => this.decrement()} />
-        <Button title="+" onPress={() => this.increment()} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Text>{ContadorState.count}</Text>
+      <Button title="-" onPress={decrement} />
+      <Button title="+" onPress={increment} />
+    </>
+  );
+});
 
 export default function App() {
   return (
